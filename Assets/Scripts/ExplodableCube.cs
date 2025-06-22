@@ -1,9 +1,10 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Renderer), typeof(Rigidbody))]
 public class ExplodableCube : MonoBehaviour
 {
-    [SerializeField] private float _splitChance = 0.5f;
+    [SerializeField] private float _splitChance = 1f;
     [SerializeField] private float _explosionRadiusMultiplier = 2f;
     [SerializeField] private float _explosionForceMultiplier = 3f;
 

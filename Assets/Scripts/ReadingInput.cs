@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class CubeInputHandler : MonoBehaviour
+public class ReadingInput : MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
-    [SerializeField] private CubeSpawner _spawner;
+    [SerializeField] private CubeInteraction _interactionCube;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class CubeInputHandler : MonoBehaviour
         {
             if (hit.collider.TryGetComponent(out ExplodableCube cube))
             {
-                _spawner.HandleCubeClick(cube);
+                _interactionCube.HandleCubeClick(cube);
             }
         }
     }
