@@ -1,18 +1,18 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(CubeVisuals))]
+[RequireComponent(typeof(ColorChanger))]
 public class CubeSpawner : MonoBehaviour
 {
     [SerializeField] private int _minSpawnCount = 2;
     [SerializeField] private int _maxSpawnCount = 6;
     [SerializeField] private ExplodableCube _cubePrefab;
 
-    private CubeVisuals _cubeVisuals;
+    private ColorChanger _colorChanger;
 
     private void Awake()
     {
-        _cubeVisuals = GetComponent<CubeVisuals>();
+        _colorChanger = GetComponent<ColorChanger>();
     }
 
     public ExplodableCube[] SpawnChildCubes(Vector3 center, Vector3 parentScale, float parentSplitChance, Color parentColor)
@@ -24,7 +24,7 @@ public class CubeSpawner : MonoBehaviour
         {
             newCubes[i] = Instantiate(_cubePrefab, center, Random.rotation);
             newCubes[i].transform.localScale = parentScale * 0.5f;
-            newCubes[i].Initialize(parentSplitChance * 0.5f, _cubeVisuals.GetVariedColor(parentColor));
+            newCubes[i].Initialize(parentSplitChance * 0.5f, _colorChanger.GetVariedColor(parentColor));
         }
 
         return newCubes;

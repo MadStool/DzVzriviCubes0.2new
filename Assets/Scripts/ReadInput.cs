@@ -3,7 +3,7 @@ using UnityEngine;
 public class ReadingInput : MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
-    [SerializeField] private CubeInteraction _interactionCube;
+    [SerializeField] private CubeInteraction _interaction;
 
     private void Awake()
     {
@@ -21,12 +21,9 @@ public class ReadingInput : MonoBehaviour
     {
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.TryGetComponent(out ExplodableCube cube))
         {
-            if (hit.collider.TryGetComponent(out ExplodableCube cube))
-            {
-                _interactionCube.HandleCubeClick(cube);
-            }
+            _interaction.HandleCubeClick(cube);
         }
     }
 }
